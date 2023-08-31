@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>คำนวณ special atk </title>
+</head>
+<body>
+    <form>
+        <label for="numberInput">กรอก special atk: </label>
+        <input type="number" id="numberInput" name="numberInput" min="0">
+        <br>
+        <label for="percentage">เลือกE+: </label>
+        <select id="percentage" name="percentage">
+            <option value="0.1">1+</option>
+            <option value="0.2">2+</option>
+            <option value="0.3">3+</option>
+            <option value="0.5">4+</option>
+            <option value="0.7">5+</option>
+            <option value="0.9">6+</option>
+            <option value="1.4">7+</option>
+            <option value="2">8+</option>
+            <option value="2.7">9+</option>
+            <option value="3.5">10+</option>
+        </select>
+        <br>
+        <label for="numberInput01">กรอกCrit.DMG%: </label>
+        <input type="number" id="numberInput01" name="numberInput01" min="0" step="0.01">
+        <br>
+
+        <label for="percentage01">ฉายา E 30%: </label>
+        <select id="percentage01" name="percentage01">
+            <option value="0">ไม่มี</option>
+            <option value="0.3">มี</option>
+        </select>
+        <br>
+        
+
+        <button type="button" onclick="calculate()">คำนวณ</button>
+        <br>
+        
+    </form>
+
+    <script>
+        function calculate() {
+            var inputElement = document.getElementById("numberInput");
+            var inputValue = parseFloat(inputElement.value);
+
+            var inputElement01 = document.getElementById("numberInput01");
+            var inputValue01 = parseFloat(inputElement01.value);
+
+            var percentageElement = document.getElementById("percentage");
+            var percentageValue = parseFloat(percentageElement.value);
+
+            var percentageElement01 = document.getElementById("percentage01");
+            var percentageValue01 = parseFloat(percentageElement01.value);
+
+            var result = ((inputValue*15)); 
+            var E = result * percentageValue;
+            var ECD = inputValue01/100;
+            var defs = 1.0625/100
+            var result00 = ((inputValue*15)+E);           
+            var citd = result00*ECD;
+            var result01 = (((inputValue*15)+E)+citd); 
+            var e30 = result01*percentageValue01 ;
+            var result02 = ((((inputValue*15)+E)+citd)+e30); 
+            var def = (result02*defs);
+            var result03 = (result02 - def);
+            
+            var e30no = result00*percentageValue01 ;
+            var nocitdresult = result00+e30no;
+            var defno = (nocitdresult*defs);
+            var nocitdresult0 = nocitdresult-defno;
+            
+
+            alert("-special atk  Crit : "+Math.floor(result03)+"-special atk  No Crit : "+Math.floor(nocitdresult0));
+
+            
+        }
+
+       
+    </script>
+</body>
+</html>
+
+
+
+
+
+
